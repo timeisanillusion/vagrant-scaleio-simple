@@ -65,9 +65,11 @@ sleep 5
 
 #copy the scripts to run on MDM1
 mkdir /scripts
-cp -R /vagrant/scaleio /scripts
+cp -R /vagrant/scripts/* /scripts
 cd /scripts
-dos2unix *
+dos2unix sdssetup.sh
+dos2unix mdmsetup.sh
+
 
 if [[ -n $1 ]]; then
   echo "Last line of file specified as non-opt/last argument:"
