@@ -4,7 +4,7 @@ do
   key="$1"
 
   case $key in
-    -m|--packagemdm)
+    -m|--packagemdm) 
     PACKAGEMDM="$2"
     shift
 	;;

@@ -12,7 +12,7 @@ vagrantbox="centos_6.5"
 # scaleio admin password
 password="Scaleio123"
 # add your domain here
-
+ 
 # add your domain here
 domain = 'scaleio.local'
 

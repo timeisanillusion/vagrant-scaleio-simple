@@ -9,7 +9,7 @@
 
 echo "Using CloudLink Address:" 
 echo $CLADDR
-
+ 
 wget http://$CLADDR/cloudlink/securevm
 sh securevm -S $CLADDR
 

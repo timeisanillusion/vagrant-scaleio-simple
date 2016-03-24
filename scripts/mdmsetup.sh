@@ -6,7 +6,7 @@
 #TBIP=192.168.50.201
 #PASSWORD=Scaleio123
 #DEVICE="/home/vagrant/scaleio1"
-
+ 
 echo "Creating cluster"
 scli --create_mdm_cluster --master_mdm_ip $FIRSTMDMIP --master_mdm_management_ip $FIRSTMDMIP --master_mdm_name mdm1 --accept_license --approve_certificate
 echo "Logging in"

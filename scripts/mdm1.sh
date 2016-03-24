@@ -69,7 +69,7 @@ echo "export CLADDR="${CLADDR}"" >> /etc/profile.d/customvar.sh
 echo "export PASSWORD="${PASSWORD}"" >> /etc/profile.d/customvar.sh
 echo "OS VARs Added"
 
-
+ 
 
 #echo "Number files in SEARCH PATH with EXTENSION:" $(ls -1 "${SEARCHPATH}"/*."${EXTENSION}" | wc -l)
 truncate -s 100GB ${DEVICE}
@@ -94,8 +94,8 @@ sleep 5
 
 #copy the scripts to run on MDM1
 mkdir /scripts
-cp -R /vagrant/scripts/* /scripts
-cd /scripts
+cp -R /vagrant/scripts/* /home/vagrant/scripts
+cd /home/vagrant/scripts
 dos2unix sdssetup.sh
 dos2unix mdmsetup.sh
 dos2unix svminstall.sh
