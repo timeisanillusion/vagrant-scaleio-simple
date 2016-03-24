@@ -10,8 +10,7 @@
 echo "Using CloudLink Address:" 
 echo $CLADDR
  
-wget http://$CLADDR/cloudlink/securevm
-sh securevm -S $CLADDR
+curl -O http://$CLADDR/cloudlink/securevm
 
 echo "Do you wish to install SecureVM?"
 select yn in "Yes" "No"; do
