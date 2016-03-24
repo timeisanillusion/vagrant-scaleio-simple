@@ -8,8 +8,8 @@ do
     PACKAGETB="$2"
     shift
 	;;
-    -s|--sds)
-    SDS="$2"
+    -s|--packagesds)
+    PACKAGESDS="$2"
     shift
 	;;
     -c|--packagesdc)
@@ -35,7 +35,7 @@ do
   shift
 done
 echo PACKAGETB = "${PACKAGETB}"
-echo PACKAGESDS  = "${SDS}"
+echo PACKAGESDS  = "${PACKAGESDS}"
 echo PACKAGESDC  = "${PACKAGESDC}"
 echo DEVICE  = "${DEVICE}"
 echo FIRSTMDMIP    = "${FIRSTMDMIP}"
@@ -53,7 +53,7 @@ MDM_ROLE_IS_MANAGER=0 rpm -i ${PACKAGETB}
 sleep 5
 
 echo "installing SDS"
-rpm -i ${SDS}
+rpm -i ${PACKAGESDS}
 sleep 5
 
 echo "installing SDC"

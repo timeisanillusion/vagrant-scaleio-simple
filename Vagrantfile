@@ -10,7 +10,7 @@ vagrantbox="centos_6.5"
 #vagrantboxurl="http://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box"
 
 # scaleio admin password
-# password="Scaleio123"
+password="Scaleio123"
 # add your domain here
 
 # add your domain here
@@ -29,7 +29,7 @@ secondmdmip = "#{network}.203"
 #Set rpm comment to install mdm1
 packagetb = "EMC-ScaleIO-mdm-2.0-5014.0.el6.x86_64.rpm"
 packagemdm = "EMC-ScaleIO-mdm-2.0-5014.0.el6.x86_64.rpm"
-sds = "EMC-ScaleIO-sds-2.0-5014.0.el6.x86_64.rpm"
+packagesds = "EMC-ScaleIO-sds-2.0-5014.0.el6.x86_64.rpm"
 packagesdc = "EMC-ScaleIO-sdc-2.0-5014.0.el6.x86_64.rpm"
 
 # packages folder
@@ -39,6 +39,10 @@ packagename = "EMC-ScaleIO"
 
 # fake device
 device = "/home/vagrant/scaleio1"
+
+#CloudLink Information
+claddr = "192.168.148.169"
+
 
 # loop through the nodes and set hostname
 scaleio_nodes = []
@@ -69,7 +73,7 @@ Vagrant.configure("2") do |config|
         node_config.vm.network "private_network", ip: "#{tbip}"
         node_config.vm.provision "shell" do |s|
           s.path = "scripts/tb.sh"
-          s.args   = "-t #{packagetb} -s #{sds} -c #{packagesdc} -d #{device} -f #{firstmdmip} -e #{secondmdmip}"
+          s.args   = "-t #{packagetb} -s #{packagesds} -c #{packagesdc} -d #{device} -f #{firstmdmip} -e #{secondmdmip}"
         end
       end
 	#  vb.customize ["modifyvm", :id, "--memory", "4092"]
@@ -80,7 +84,7 @@ Vagrant.configure("2") do |config|
 		node_config.vm.network "forwarded_port", guest: 9011, host: 9011
         node_config.vm.provision "shell" do |s|
           s.path = "scripts/mdm1.sh"
-          s.args   = "-m #{packagemdm} -s #{sds} -c #{packagesdc} -d #{device} -f #{firstmdmip} -e #{secondmdmip}"
+          s.args   = "-m #{packagemdm} -s #{packagesds} -c #{packagesdc} -d #{device} -f #{firstmdmip} -e #{secondmdmip} -v #{claddr} -t #{tbip} -p #{password}"
         end
       end
 
@@ -89,7 +93,7 @@ Vagrant.configure("2") do |config|
         node_config.vm.network "private_network", ip: "#{secondmdmip}"
         node_config.vm.provision "shell" do |s|
           s.path = "scripts/mdm2.sh"
-          s.args   = "-m #{packagemdm} -s #{sds} -c #{packagesdc} -d #{device} -f #{firstmdmip} -e #{secondmdmip}"
+          s.args   = "-m #{packagemdm} -s #{packagesds} -c #{packagesdc} -d #{device} -f #{firstmdmip} -e #{secondmdmip}"
         end
       end
     end
