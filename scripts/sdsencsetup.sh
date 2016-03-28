@@ -14,8 +14,15 @@ more tmp | awk '{print substr($5, 1, length($5)-1)}'  > tmp2
 grep '[^[:blank:]]' < tmp2 > devices.txt
 rm -f tmp tmp2
 
+
+#currently assumes a single SDS device!
+PATH=$(head -n 1 devices.txt)
+
 echo "Logging in"
 scli --login --username admin --password $PASSWORD --approve_certificate
-echo "Adding 3 SDS"
-scli --add_sds --sds_ip 192.168.148.204 --device_path /dev/sdb --sds_name sds1 --protection_domain_name pdomain1 --storage_pool_name pool1
+
+
+#currently assumes a single SDS device!
+echo "Adding encrypted SDS"
+scli --add_sds --sds_ip 192.168.148.204 --device_path $PATH --sds_name sds1 --protection_domain_name pdomain1 --storage_pool_name pool1
 
